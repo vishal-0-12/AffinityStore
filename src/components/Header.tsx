@@ -49,19 +49,19 @@ const Header: React.FC = () => {
   const iconGroup = (
     <>
       <button className="p-2 text-gray-600 hover:text-pink-600 transition-colors">
-        <Search className="w-8 h-8 sm:w-5 sm:h-5" />
+        <Search className="w-5 h-5" />
       </button>
       <button className="p-2 text-gray-600 hover:text-pink-600 transition-colors">
-        <User className="w-8 h-8 sm:w-5 sm:h-5" />
+        <User className="w-5 h-5" />
       </button>
       <button className="p-2 text-gray-600 hover:text-pink-600 transition-colors relative">
-        <Heart className="w-8 h-8 sm:w-5 sm:h-5" />
+        <Heart className="w-5 h-5" />
         <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
           0
         </span>
       </button>
       <button className="p-2 text-gray-600 hover:text-pink-600 transition-colors relative">
-        <ShoppingCart className="w-8 h-8 sm:w-5 sm:h-5" />
+        <ShoppingCart className="w-5 h-5" />
         <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
           0
         </span>
