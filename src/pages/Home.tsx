@@ -3,6 +3,7 @@ import HeroSection from '../components/HeroSection';
 import FeaturesSection from '../components/FeaturesSection';
 import FeaturedProductsSection from '../components/FeaturedProductsSection';
 import CategoryShowcase from '../components/CategoryShowcase';
+import SeasonCollection from '../components/SeasonCollection';
 
 const Home: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const Home: React.FC = () => {
       <HeroSection />
       <FeaturesSection />
       <FeaturedProductsSection />
+      <SeasonCollection />
       <CategoryShowcase />
     </div>
   );
