@@ -1,140 +1,98 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
-const heroSections = [
+const carouselImages = ['https://thumbs.dreamstime.com/b/family-shopping-happy-people-child-carrying-bags-walking-modern-mall-high-resolution-family-shopping-happy-people-mall-116208869.jpg', 
+  
+  'https://thumbs.dreamstime.com/b/confident-handsome-man-black-suit-sitting-chair-dark-backround-confident-handsome-man-black-suit-sitting-163081675.jpg',
+  
+  'https://st4.depositphotos.com/20142974/28461/i/1600/depositphotos_284614480-stock-photo-cute-stylish-boy-sitting-on.jpg',
+'https://images.pexels.com/photos/19556869/pexels-photo-19556869/free-photo-of-young-woman-wearing-traditional-clothing-sitting-on-the-floor-and-posing.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'];
+
+const categories = [
   {
-    title: 'Elevate Your Style',
-    subtitle: 'Discover the latest in men’s fashion',
-    link: '/men',
-    image: '/men.jpg',
-    bgGradient: 'from-black/70 to-black/30',
-  },
-  {
-    title: 'Bold & Beautiful',
-    subtitle: 'Unleash confidence with women’s fashion',
-    link: '/women',
+    title: 'Women',
+    subtitle: 'Best Clothes For Women',
     image: '/women.jpg',
-    bgGradient: 'from-black/70 to-pink-900/30',
+    link: '/women',
   },
   {
-    title: 'For Little Trendsetters',
-    subtitle: 'Fun and stylish outfits for kids',
-    link: '/kids',
+    title: 'Men',
+    subtitle: 'Best Clothes For Men',
+    image: '/men.jpg',
+    link: '/men',
+  },
+  {
+    title: 'Kids',
+    subtitle: 'Best Clothes For Kids',
     image: '/kids.jpg',
-    bgGradient: 'from-black/70 to-green-700/30',
+    link: '/kids',
+  },
+  {
+    title: 'Accessories',
+    subtitle: 'Best Trend Accessories',
+    image: '/women.jpg',
+    link: '/accessories',
   },
 ];
 
-const slideVariants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? 1000 : -1000,
-    opacity: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction: number) => ({
-    x: direction > 0 ? -1000 : 1000,
-    opacity: 0,
-  }),
-};
-
 const HeroSection: React.FC = () => {
-  const [[currentSlide, direction], setCurrentSlide] = useState([0, 0]);
-
-  const changeSlide = (dir: number) => {
-    setCurrentSlide(([prev]) => {
-      const next = (prev + dir + heroSections.length) % heroSections.length;
-      return [next, dir];
-    });
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => changeSlide(1), 7000);
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
-  const { title, subtitle, link, image, bgGradient } = heroSections[currentSlide];
-
   return (
-    <section className="relative h-[85vh] w-full overflow-hidden">
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.div
-          key={currentSlide}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.9, ease: 'easeInOut' }}
-          className="absolute inset-0"
-        >
-          <div
-            className="h-full w-full bg-cover bg-center"
-            style={{ backgroundImage: `url(${image})` }}
-          >
-            <div className={`absolute inset-0 bg-gradient-to-br ${bgGradient}`} />
-
-            <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-24 text-white">
-              <motion.h2
-                className="text-4xl md:text-6xl font-extrabold mb-2 drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] tracking-tight leading-tight"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                {title}
-              </motion.h2>
-              <motion.p
-                className="text-lg md:text-2xl font-medium mb-6 drop-shadow-md"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                {subtitle}
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-              >
-                <Link
-                  to={link}
-                  className="inline-block bg-white/90 text-gray-900 font-semibold px-7 py-3 rounded-lg shadow-md backdrop-blur-sm hover:bg-white transition-all duration-300"
-                >
-                  Explore Now
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={() => changeSlide(-1)}
-        className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-2.5 rounded-full shadow-md z-10 backdrop-blur-sm"
-      >
-        <ChevronLeft className="w-6 h-6 text-gray-800" />
-      </button>
-      <button
-        onClick={() => changeSlide(1)}
-        className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-2.5 rounded-full shadow-md z-10 backdrop-blur-sm"
-      >
-        <ChevronRight className="w-6 h-6 text-gray-800" />
-      </button>
-
-      {/* Navigation Dots */}
-      <div className="absolute bottom-6 w-full flex justify-center space-x-2 z-10">
-        {heroSections.map((_, index) => (
+    <section className="flex flex-col md:flex-row h-[90vh] p-4 md:p-8 gap-4">
+      {/* Left Half - Carousel Promo */}
+      <div className="w-full md:w-1/2 h-[400px] md:h-full relative rounded-xl shadow-lg overflow-hidden group">
+        {/* Carousel Images */}
+        {carouselImages.map((img, index) => (
           <div
             key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentSlide === index ? 'bg-white' : 'bg-white/50'
-            }`}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+              index === currentIndex ? 'opacity-100' : 'opacity-0'
+            } `}
+            style={{ backgroundImage: `url(${img})`, zIndex: 0 }}
           />
+        ))}
+
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition duration-500 rounded-xl z-10" />
+
+        {/* Text content */}
+        <div className="relative z-20 text-center text-white px-6 flex flex-col items-center justify-center h-full transition duration-500 group-hover:scale-[1.02]">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-wide uppercase transition-all duration-500 group-hover:tracking-widest">
+            Affinity Store
+          </h1>
+          <p className="text-lg italic mb-6">A Complete Family Store</p>
+          <Link
+            to="/shop"
+            className="inline-block bg-white text-black font-semibold px-6 py-3 rounded-lg hover:bg-gray-200 transition"
+          >
+            Purchase Now!
+          </Link>
+        </div>
+      </div>
+
+      {/* Right Half - 2x2 Grid */}
+      <div className="w-full md:w-1/2 grid grid-cols-2 grid-rows-2 gap-4">
+        {categories.map(({ title, subtitle, image, link }, idx) => (
+          <Link
+            key={idx}
+            to={link}
+            className="relative bg-cover bg-center rounded-xl overflow-hidden shadow-md group"
+            style={{ backgroundImage: `url(${image})` }}
+          >
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-300" />
+            <div className="relative z-10 h-full flex flex-col items-center justify-center text-white text-center px-4">
+              <h2 className="text-2xl font-bold mb-1">{title}</h2>
+              <p className="italic text-sm">{subtitle}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </section>
