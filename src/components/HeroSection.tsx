@@ -78,23 +78,23 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Half - 2x2 Grid */}
-      <div className="w-full md:w-1/2 grid grid-cols-2 grid-rows-2 gap-4">
-        {categories.map(({ title, subtitle, image, link }, idx) => (
-          <Link
-            key={idx}
-            to={link}
-            className="relative bg-cover bg-center rounded-xl overflow-hidden shadow-md group"
-            style={{ backgroundImage: `url(${image})` }}
-          >
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-300" />
-            <div className="relative z-10 h-full flex flex-col items-center justify-center text-white text-center px-4">
-              <h2 className="text-2xl font-bold mb-1">{title}</h2>
-              <p className="italic text-sm">{subtitle}</p>
-            </div>
-          </Link>
-        ))}
+      {/* Right Half - Responsive 2x2 Grid */}
+<div className="w-full md:w-1/2 grid grid-cols-2 grid-rows-2 gap-4 sm:grid-cols-2 sm:grid-rows-2 xs:grid-cols-1 xs:grid-rows-4">
+  {categories.map(({ title, subtitle, image, link }, idx) => (
+    <Link
+      key={idx}
+      to={link}
+      className="relative bg-cover bg-center rounded-xl overflow-hidden shadow-md group h-40 sm:h-48 md:h-auto"
+      style={{ backgroundImage: `url(${image})` }}
+    >
+      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-300" />
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-white text-center px-4">
+        <h2 className="text-2xl font-bold mb-1">{title}</h2>
+        <p className="italic text-sm">{subtitle}</p>
       </div>
+    </Link>
+  ))}
+</div>
     </section>
   );
 };
