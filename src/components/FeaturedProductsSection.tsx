@@ -12,6 +12,11 @@ const FeaturedProductsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-16">
+          <img
+    src="/sale_coupon.avif" 
+    alt="Category Banner"
+    className="mb-8 w-full h-auto" 
+  />
           <h2 className="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
             Handpicked Just For You
           </h2>
