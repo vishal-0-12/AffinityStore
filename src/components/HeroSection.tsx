@@ -65,7 +65,7 @@ const HeroSection: React.FC = () => {
 
         {/* Text content */}
         <div className="relative z-20 text-center text-white px-6 flex flex-col items-center justify-center h-full transition duration-500 group-hover:scale-[1.02]">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-wide uppercase transition-all duration-500 group-hover:tracking-widest">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-wide transition-all duration-500 group-hover:tracking-widest">
             Affinity Store
           </h1>
           <p className="text-lg italic mb-6">A Complete Family Store</p>
