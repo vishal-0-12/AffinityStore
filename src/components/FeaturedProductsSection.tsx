@@ -17,7 +17,7 @@ const FeaturedProductsSection: React.FC = () => {
     alt="Category Banner"
     className="mb-8 w-full h-auto" 
   />
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
             Handpicked Just For You
           </h2>
           <p className="text-gray-600 text-lg max-w-xl mx-auto">

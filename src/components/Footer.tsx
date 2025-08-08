@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
             <div className="flex items-start gap-2">
               <MapPin className="w-5 h-5 mt-0.5 text-white" />
               <p className="leading-relaxed">
-                DD Colony, Pipli Rd, opposite New Bus Stand, <br />
+                DD Colony, Pipli Rd, opposite New Bus Stand,
                 Kurukshetra, Haryana 136118
               </p>
             </div>
