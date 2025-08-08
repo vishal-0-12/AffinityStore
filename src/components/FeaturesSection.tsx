@@ -84,18 +84,18 @@ const FeaturesSection: React.FC = () => (
     </section>
 
     {/* Brands Carousel Section */}
-   <section className="py-10 bg-white overflow-hidden px-8">
+   <section className="py-10 bg-white overflow-hidden px-4">
   <div className="relative w-full overflow-hidden">
-    <div className="flex animate-scroll whitespace-nowrap">
+    <div className="inline-flex animate-scroll whitespace-nowrap">
       {[...brands, ...brands].map(({ name, logo }, index) => (
         <div
           key={`${name}-${index}`}
-          className="flex justify-center items-center min-w-[150px] sm:min-w-[180px] md:min-w-[200px] px-4 hover:scale-110 transition-transform duration-300"
+          className="flex justify-center items-center min-w-[100px] sm:min-w-[150px] md:min-w-[200px] px-4 hover:scale-110 transition-transform duration-300"
         >
           <img
             src={logo}
             alt={name}
-            className="h-32 w-full object-contain"
+            className="h-20 sm:h-28 md:h-32 w-full object-contain"
           />
         </div>
       ))}
@@ -112,11 +112,11 @@ const FeaturesSection: React.FC = () => (
       }
     }
     .animate-scroll {
-      display: flex;
       animation: scroll 20s linear infinite;
     }
   `}</style>
 </section>
+
 
   </>
 );
